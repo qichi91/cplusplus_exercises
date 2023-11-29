@@ -1,0 +1,6 @@
+Hello world! I am a new programmer.
++I like to code in Python.
++I have a dog named Max.
++I have a cat named Mittens.
++I like to play video games.
++I like to play basketball.
