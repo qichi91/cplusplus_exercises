@@ -5,7 +5,7 @@
  * 
  */
 // #include "XXXXX.hpp"
-TEST_CASE("xxxxx", "")
+TEST_CASE("exercises", "")
 {
     // 回答コードはここに記載する
 

@@ -25,7 +25,7 @@ add_library(srcCompileObjects OBJECT "main.cpp")
 target_include_directories(
     srcCompileObjects
     PUBLIC
-    "${CMAKE_CURRENT_SOURCE_DIR}/../include/Catch2"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../include/Catch2"
 )
 
 # CHECK::ここにサブディレクトリを追加
