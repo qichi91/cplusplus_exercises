@@ -153,3 +153,119 @@ classDiagram
   GradeBook o-- Student
 ```
 
+
+### 3-4. 車両とエンジン
+- `Engine`クラス:
+    - 機能
+        - エンジンには燃料種別がある.
+    - メンバ変数:
+        * エンジン (`engineID`)
+        * 燃料種別 (`fuelType`)
+    - メソッド:
+        * エンジン名取得 (`getEngineID()`)
+        * 燃料種別取得 (`getFuelType()`)
+- `Vehicle`クラス:
+    - 機能
+        - 車両はエンジンを搭載できる.
+    - メンバ変数:
+        * 車両名 (`vehicleID`)
+        * エンジン (`engine`)
+    - メソッド:
+        *  エンジン取得(`getEngine()`)
+        *  車両名取得(`getVehicleID()`)
+
+
+```mermaid
+classDiagram
+  class Engine {
+    - std::string engineID
+    - std::string fuelType
+    + std::string getEngineID()
+    + std::string getFuelType()
+  }
+
+  class Vehicle {
+    - std::string vehicleID
+    - Engine engine
+    + Vehicle(Engine)
+    + std::string getVehicleID()
+    + Engine getEngine()
+  }
+
+Vehicle o-- Engine
+```
+
+### 3-5. 従業員とプロジェクト
+- `Project`クラス:
+    - 機能
+        - プロジェクトクラスは名称とIDを持つ.
+    - メンバ変数:
+        * ID (`projectID`)
+        * 名称 (`projectName`)
+    - メソッド:
+        * プロジェクトID取得 (`getProjectID()`)
+        * プロジェクト名取得 (`getProjectName()`)
+- `Employee`クラス:
+    - 機能
+        - 従業員は複数のプロジェクトに参加できる.
+    - メンバ変数:
+        * 従業員名 (`employeeName`)
+        * プロジェクトリスト (`projectLists`)
+    - メソッド:
+        *  プロジェクト追加(`addProject()`)
+        *  参加プロジェクト取得(`getProject()`)
+
+```mermaid
+classDiagram
+  class Project {
+    - std::string projectID
+    - std::string projectName
+  }
+
+  class Employee {
+    - std::string employeeName
+    - std::vector<Project> projects
+    + void addProject(Project project)
+    + void displayProjects()
+  }
+
+Project o-- Employee
+```
+
+### 3-6. 動物と動物園
+
+- `Animal`クラス:
+    - 機能
+        - 動物クラスは名称と鳴き声を持つ.
+    - メンバ変数:
+        * 名称 (`animalName`)
+        * 鳴き声 (`sound`)
+    - メソッド:
+        * 動物名取得 (`getAnimalName()`)
+        * 鳴き声取得 (`getSound()`)
+- `Zoo`クラス:
+    - 機能
+        - 動物園には複数の動物が存在する.
+    - メンバ変数:
+        * 動物リスト (`animals`)
+    - メソッド:
+        * 動物追加 (`addAnimal(Animal animal)`)
+        * 動物一覧出力 (`outputAnimals()`)
+
+```mermaid
+classDiagram
+  class Animal {
+    - std::string animalName
+    - std::string sound
+    + ::string getName()
+    + ::string getSound()
+  }
+
+  class Zoo {
+    - std::vector<Animal> animals
+    + void addAnimal(animal: Animal)
+    + void outputAnimals()
+  }
+
+  Zoo o-- Animal
+```
