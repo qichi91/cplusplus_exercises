@@ -269,3 +269,166 @@ classDiagram
 
   Zoo o-- Animal
 ```
+
+### 3-7. 商品とショッピングカート
+
+- `Product`クラス:
+    - 機能
+        - 商品クラスは商品名、価格、在庫数量を持つ.
+    - メンバ変数:
+        * 商品名 (`productName`)
+        * 価格 (`price`)
+        * 在庫数量 (`stockQuantity`)
+    - メソッド:
+        * 商品名取得 (`getProductName()`)
+        * 価格取得 (`getPrice()`)
+        * 在庫数量取得 (`getStockQuantity()`)
+- `ShoppingCart`クラス:
+    - 機能
+        - ショッピングカートには商品が複数入る.
+        - ショッピングカートは合計金額を表示できる.
+    - メンバ変数:
+        * カートアイテムリスト (`cartItems`)
+    - メソッド:
+        * 商品追加 (`addItemToCart(Product item)`)
+        * 合計金額表示 (`displayTotal()`)
+```mermaid
+classDiagram
+  class Product {
+    - std::string productName
+    - double price
+    - int stockQuantity
+    + std::string getProductName()
+    + double getPrice()
+    + int getStockQuantity()
+  }
+
+  class ShoppingCart {
+    - std::list<Product> cartItems
+    + void addItemToCart(Product item)
+    + void displayTotal()
+  }
+
+  ShoppingCart o-- Product
+```
+
+### 3-8. 本と図書館
+
+- `Book`クラス:
+    - 機能
+        - 図書クラスはタイトル、著者、ISBNを持つ.
+    - メンバ変数:
+        * タイトル (`title`)
+        * 著者 (`author`)
+        * ISBN (`isbn`)
+    - メソッド:
+        * タイトル取得 (`getTitle()`)
+        * 著者取得 (`getAuthor()`)
+        * ISBN取得 (`getISBN()`)
+- `Library`クラス:
+    - 機能
+        - 図書館には複数の図書が存在する.
+    - メンバ変数:
+        * 図書リスト (`books`)
+    - メソッド:
+        * 図書追加 (`addBook(Book book)`)
+        * 図書検索 (`searchBook(std::string title)`)
+```mermaid
+classDiagram
+  class Book {
+    - std::string title
+    - std::string author
+    - std::string isbn
+    + std::string getTitle()
+    + std::string getAuthor()
+    + std::string getISBN()
+  }
+
+  class Library {
+    - std::list<Book> books
+    + void addBook(Book book)
+    + Book searchBook(std::string title)
+  }
+
+  Library o-- Book
+```
+
+### 3-9. 飛行機と航空会社
+
+- `Airplane`クラス:
+    - 機能
+        - 飛行機クラスは航空会社に所属する.
+    - メンバ変数:
+        * 飛行機ID (`airplaneID`)
+        * 所属航空会社 (`airline`)
+    - メソッド:
+        * 飛行機ID取得 (`getAirplaneID()`)
+        * 航空会社取得 (`getAirline()`)
+- `Airline`クラス:
+    - 機能
+        - 航空会社は複数の飛行機を所有する.
+    - メンバ変数:
+        * 航空会社名 (`airlineName`)
+        * 所有飛行機リスト (`airplanes`)
+    - メソッド:
+        * 飛行機追加 (`addAirlane(Apirplane airplane)`)
+        * 所有飛行機表示 (`displayAirplanes()`)
+```mermaid
+classDiagram
+  class Airplane {
+    - std::string airplaneID
+    - std::shared_ptr<Airline> airline
+    + std::string getAirplaneID()
+    + std::shared_ptr<Airline> getAirline()
+  }
+
+  class Airline {
+    - std::string airlineName
+    - std::list<Airplane> airplanes
+    + void addAirlane(Apirplane airplane)
+    + void displayAirplanes()
+  }
+
+  Airline o-- Airplane
+```
+
+### 3-10. 料理とレストラン
+
+- `Dish`クラス:
+    - 機能
+        - 料理クラスは名称、材料、価格を持つ.
+    - メンバ変数:
+        * 料理名 (`dishName`)
+        * 材料リスト (`ingredients`)
+        * 価格 (`price`)
+    - メソッド:
+        * 料理名取得 (`getDishName()`)
+        * 材料取得 (`getIngredients()`)
+        * 価格取得 (`getPrice()`)
+- `Restaurant`クラス:
+    - 機能
+        - レストランには複数の料理が存在する.
+    - メンバ変数:
+        * メニューリスト (`menu`)
+    - メソッド:
+        * 料理追加 (`addDish(Dish dish)`)
+        * メニュー表示 (`displayMenu()`)
+```mermaid
+classDiagram
+  class Dish {
+    - std::string dishName
+    - std::list<std::string> ingredients
+    - int price
+    + std::string getDishName()
+    + std::list<std::string> getIngredients
+    + int getPrice()
+  }
+
+  class Restaurant {
+    - std::list<Dish> menu
+    + void addDish(Dish dish)
+    + void displayMenu()
+  }
+
+  Restaurant o-- Dish
+```
