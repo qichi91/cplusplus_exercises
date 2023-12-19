@@ -27,3 +27,11 @@ target_sources(srcCompileObjects PRIVATE
     # XXXXXはソースファイル名
     #####
 )
+
+# set the include directories
+target_include_directories(
+    srcCompileObjects
+    PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}"
+
+    # PRIVATE include
+)
