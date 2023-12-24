@@ -77,7 +77,8 @@ int main() {
 
 
 ### 2-3. デフォルト引数
-クラスRectangleを作成し、コンストラクタで幅と高さを引数として受け取る際、デフォルト引数を使用して高さが指定されない場合は幅と同じになるようにしてください。
+クラスRectangleを作成してください。
+コンストラクタで幅と高さを引数として受け取る際、デフォルト引数を使用して高さが指定されない場合は50になるようにしてください。
 
 <details>
 <summary>回答例</summary>
@@ -87,7 +88,7 @@ int main() {
 
 class Rectangle {
 public:
-    Rectangle(double width, double height = 0.0) : width(width), height(height) {}
+    Rectangle(double width, double height = 50.0) : width(width), height(height) {}
 
     void display() const {
         std::cout << "Width: " << width << ", Height: " << height << std::endl;
