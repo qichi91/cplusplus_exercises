@@ -1,4 +1,5 @@
 #include <catch.hpp>
+#include "catchhelper.hpp"
 
 /**
  * @brief 演習問題のテストコード
