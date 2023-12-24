@@ -49,4 +49,4 @@ target_compile_options(
 target_link_libraries(${PROJECT_NAME} PRIVATE srcCompileObjects)
 
 # 実行ファイルと同じ場所にテスト用のファイルをコピー
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/readfile.txt $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/src/readfile.txt $<TARGET_FILE_DIR:${PROJECT_NAME}>)
