@@ -98,3 +98,70 @@ private:
 };
 ```
 </details>
+
+
+### 5-3. スレッドセーフなキュー
+
+スレッドセーフなキューを作成してください。
+キーワード：
+* std::mutex
+* std::condition_variable
+
+
+```mermaid
+classDiagram
+  class BoundedQueue {
+    + BoundedQueue(size_t size) コンストラクタ,sizeはキューのサイズ
+    + void push(T value) キューに要素を追加する
+    + T pop() キューから要素を取り出す
+    + bool empty() キューが空か否か
+    - std::queue<T> m_queue
+  }
+```
+
+<details>
+<summary>回答例</summary>
+
+```
+#include <mutex>
+#include <condition_variable>
+#include <queue>
+template <typename T>
+class BoundedQueue
+{
+public:
+    BoundedQueue(size_t size) : m_size(size) {}
+
+    void push(T value)
+    {
+        std::unique_lock<std::mutex> lock(m_mutex);
+        m_condition_push.wait(lock, [this]() { return m_queue.size() < m_size; });
+        m_queue.push(value);
+        m_condition_pop.notify_one();
+    }
+
+    T pop()
+    {
+        std::unique_lock<std::mutex> lock(m_mutex);
+        m_condition_pop.wait(lock, [this]() { return !m_queue.empty(); });
+        T value = m_queue.front();
+        m_queue.pop();
+        m_condition_push.notify_one();
+        return value;
+    }
+    
+    bool empty()
+    {
+        std::unique_lock<std::mutex> lock(m_mutex);
+        return m_queue.empty();
+    }
+
+private:
+    size_t m_size;
+    std::queue<T> m_queue;
+    std::mutex m_mutex;
+    std::condition_variable m_condition_push;
+    std::condition_variable m_condition_pop;
+};
+```
+</details>
