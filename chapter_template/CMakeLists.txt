@@ -26,6 +26,7 @@ target_include_directories(
     srcCompileObjects
     PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/../../include/Catch2"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../include/doctest"
 )
 
 # CHECK::ここにサブディレクトリを追加

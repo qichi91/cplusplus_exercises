@@ -1,7 +1,6 @@
-#include "catch.hpp"
-
 #include <iostream>
 #include <sstream>
+#include <functional>
 
 // void foo()
 // {
