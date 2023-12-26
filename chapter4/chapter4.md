@@ -215,28 +215,32 @@ int main() {
 
 class Complex;
 
-class Calculator {
+class Calculator
+{
 public:
-    static Complex multiply(const Complex& a, const Complex& b);
+    Complex multiply(const Complex &a, const Complex &b);
 };
 
-class Complex {
-public:
-    Complex(double real, double imag) : real(real), imag(imag) {}
-
-    void display() const {
-        std::cout << real << " + " << imag << "i";
-    }
-
-    friend Complex Calculator::multiply(const Complex& a, const Complex& b);
-
+class Complex
+{
 private:
     double real;
     double imag;
+
+public:
+    Complex(double r = 0.0, double i = 0.0) : real(r), imag(i) {}
+
+    void output() const
+    {
+        std::cout << "(" << real << ", " << imag << ")" << std::endl;
+    }
+
+    friend Complex Calculator::multiply(const Complex &a, const Complex &b);
 };
 
-Complex Calculator::multiply(const Complex& a, const Complex& b) {
-    return Complex((a.real * b.real) - (a.imag * b.imag), (a.real * b.imag) + (a.imag * b.real));
+Complex Calculator::multiply(const Complex &a, const Complex &b)
+{
+    return Complex(a.real * b.real - a.imag * b.imag, a.real * b.imag + a.imag * b.real);
 }
 
 int main() {
@@ -250,8 +254,7 @@ int main() {
     std::cout << " and ";
     c2.display();
     std::cout << " is ";
-    result.display();
-    std::cout << std::endl;
+    result.output();
 
     return 0;
 }
